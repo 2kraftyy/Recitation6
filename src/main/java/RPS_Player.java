@@ -5,7 +5,6 @@ public class RPS_Player {
     private static final int  PAPER = 0;
     private static final int SCISSORS = 1;
     private static final int ROCK = 2;
-    private final Random random;
 
     private int numberOfGamesWon;
     private int numberOfGamesPlayed;
@@ -13,11 +12,11 @@ public class RPS_Player {
     private String name;
 
     public RPS_Player(String name){
-        // TODO: replace this line with your code.
+        this.name = name;
     }
 
     public String getName(){
-        // TODO: replace this line with your code.
+        return name;
     }
 
     /**
@@ -25,7 +24,7 @@ public class RPS_Player {
      * @return returns the number of games played.
      */
     public int getNumberOfGamesPlayed(){
-        // TODO: replace this line with your code.
+        return numberOfGamesPlayed;
     }
 
     /**
@@ -33,7 +32,8 @@ public class RPS_Player {
      * @return returns the number of games won.
      */
     public int getNumberOfGamesWon(){
-        // TODO: replace this line with your code.
+
+        return numberOfGamesWon;
     }
 
     /**
@@ -41,14 +41,15 @@ public class RPS_Player {
      * @return win percentage as a double.
      */
     public double getWinPercentage(){
-        // TODO: replace this line with your code.
+        return ((double) numberOfGamesWon / numberOfGamesPlayed);
     }
 
     /**
      * Starts a new game.
      */
     public void clear(){
-        // TODO: replace this line with your code.
+        numberOfGamesWon = 0;
+        numberOfGamesPlayed = 0;
     }
 
     /**
@@ -60,6 +61,30 @@ public class RPS_Player {
      */
     public RPS_Player challenge(RPS_Player anotherPlayer){
         // TODO: replace this line with your code.
+        int randomNum1 = (int)(Math.random() * 3); // 0 to 2
+        int randomNum2 = (int)(Math.random() * 3);// 0 to 2
+
+        this.numberOfGamesPlayed++;
+        anotherPlayer.numberOfGamesPlayed++;
+
+        if ((randomNum1 == PAPER && randomNum2 == ROCK)||
+        (randomNum1 == SCISSORS && randomNum2 == PAPER)||
+        (randomNum1 == ROCK && randomNum2 == SCISSORS)){
+            numberOfGamesWon += 1;
+            return this;
+        }
+        else if ((randomNum2 == PAPER && randomNum1 == ROCK)||
+                (randomNum2 == SCISSORS && randomNum1 == PAPER)||
+                (randomNum2 == ROCK && randomNum1 == SCISSORS)){
+            anotherPlayer.numberOfGamesWon += 1;
+            return anotherPlayer;
+        }else{
+            return null;
+        }
+
+
+
+
     }
 
     /**
@@ -71,6 +96,7 @@ public class RPS_Player {
      */
     public RPS_Player keepAndChallenge(RPS_Player anotherPlayer){
         // TODO: replace this line with your code.
+        return null;
     }
 
 }
